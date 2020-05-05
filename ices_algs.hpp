@@ -37,9 +37,19 @@ unsigned int iceberg_avoiding_exhaustive(const grid& setting) {
   assert(steps < 64);
 
   unsigned int count_paths = 0;
-    
   // TODO: implement the exhaustive optimization algorithm, then delete this
   // comment.
+  int bit;
+
+  for (int i =0; i< (pow(2,steps)-1); i++){
+	path exhaust(setting);
+  for (int k = 0; k<steps-1; k++){
+	bit = ((i>>k)/2) & 1;
+  if (bit == 1) exhaust.add_step(STEP_DIRECTION_RIGHT);
+  else exhaust.add_step(STEP_DIRECTION_DOWN);
+  }
+  count_paths++;
+}
 
   return count_paths;
 }
@@ -62,7 +72,26 @@ unsigned int iceberg_avoiding_dyn_prog(const grid& setting) {
     
   // TODO: implement the dynamic programming algorithm, then delete this
   // comment.
-  
+  for(int i = 0; i < setting.rows()-1;i++){
+	for(int j = 0; j<setting.columns()-1; j++){
+	      if(setting.get(i,j) == CELL_ICEBERG){
+		  A[i][j] = 0;
+	      }
+
+	int from_above =0, from_left = 0;
+
+	  if( i > 0 && A[i][j] != 0)
+		from_above = A[i-1][j];
+	  if( j >0 && A[i][j-1] != 0)
+		from_left = A[i][j-1];
+
+	if(from_above = 0  && from_left = 0)
+	   {
+		A[i][j] = 0;
+	   }
+	else A[i][j] = from_above + from_left;
+      }
+  }
   return A[setting.rows()-1][setting.columns()-1];
 }
 
