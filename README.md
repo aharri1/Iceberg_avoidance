@@ -2,7 +2,6 @@
 Iceberg avoiding problem
 
 Group members:
+Alejandro Harrison
 
-Ada Lovelace adalovelace@csu.fullerton.edu
-
-Charles Babbage charlesbab@csu.fullerton.edu
+harri171@csu.fullerton.edu
