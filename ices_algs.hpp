@@ -81,10 +81,11 @@ unsigned int iceberg_avoiding_dyn_prog(const grid& setting) {
     
   // TODO: implement the dynamic programming algorithm, then delete this
   // comment.
-  for(int i = 0; i < setting.rows()-1;i++){
-	for(int j = 0; j<setting.columns()-1; j++){
+  for(int i = 0; i <= setting.rows()-1;i++){
+	for(int j = 0; j<= setting.columns()-1; j++){
 	      if(setting.get(i,j) == CELL_ICEBERG){
 		  A[i][j] = 0;
+		 continue;
 	      }
       else {
 	int from_above =0, from_left = 0;
@@ -94,7 +95,7 @@ unsigned int iceberg_avoiding_dyn_prog(const grid& setting) {
 	  if( j >0 && A[i][j-1] != 0){
 		from_left = A[i][j-1];}
 
-	 A[i][j] += from_above + from_left;
+	 A[i][j]= A[i][j]+ from_above + from_left;
        }
      }
   }
