@@ -46,7 +46,7 @@ public:
    coordinate rows() const { return cells_.size(); }
    coordinate columns() const { return cells_.front().size(); }
 
-   cell_kind get(coordinate row, coordinate column) const {
+   
   // Test whether the given value is a valid row or column number.
     bool is_row(coordinate row) const { return row < rows(); }
     bool is_column(coordinate column) const { return column < columns(); }

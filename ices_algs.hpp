@@ -47,13 +47,13 @@ unsigned int iceberg_avoiding_exhaustive(const grid& setting) {
 	    int bit;
 	    bit = (i>>k) & 1;
          if (bit == 1){
-	   if(exhaust.is_step_valid(STEP_DIRECTION_RIGHT))
-	       exhaust.add_step(STEP_DIRECTION_RIGHT);
+	   if(exhaust.is_step_valid(STEP_DIRECTION_RIGHT)){
+	       exhaust.add_step(STEP_DIRECTION_RIGHT);}
          }
 
 	else {
-	  if (exhaust.is_step_valid(STEP_DIRECTION_DOWN))
-	       exhaust.add_step(STEP_DIRECTION_DOWN);
+	  if (exhaust.is_step_valid(STEP_DIRECTION_DOWN)){
+	       exhaust.add_step(STEP_DIRECTION_DOWN);}
         }
       }
   if (exhaust.final_row() == setting.rows()-1 && exhaust.final_column() == setting.columns()-1)
@@ -86,20 +86,17 @@ unsigned int iceberg_avoiding_dyn_prog(const grid& setting) {
 	      if(setting.get(i,j) == CELL_ICEBERG){
 		  A[i][j] = 0;
 	      }
-
+      else {
 	int from_above =0, from_left = 0;
 
-	  if( i > 0 && A[i][j] != 0)
-		from_above = A[i-1][j];
-	  if( j >0 && A[i][j-1] != 0)
-		from_left = A[i][j-1];
+	  if( i > 0 && A[i-1][j] != 0){
+		from_above = A[i-1][j];}
+	  if( j >0 && A[i][j-1] != 0){
+		from_left = A[i][j-1];}
 
-	if(from_above == 0  && from_left == 0)
-	   {
-		A[i][j] = 0;
-	   }
-	else A[i][j] = from_above + from_left;
-      }
+	 A[i][j] += from_above + from_left;
+       }
+     }
   }
   return A[setting.rows()-1][setting.columns()-1];
 }
