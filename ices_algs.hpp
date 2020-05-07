@@ -44,8 +44,7 @@ unsigned int iceberg_avoiding_exhaustive(const grid& setting) {
   for (int i =0; i< (pow(2,steps)-1); i++){
 	path exhaust(setting);
       for (int k = 0; k<steps; k++){
-	    int bit;
-	    bit = (i>>k) & 1;
+	    int bit = (i>>k) & 1;
          if (bit == 1){
 	   if(exhaust.is_step_valid(STEP_DIRECTION_RIGHT)){
 	       exhaust.add_step(STEP_DIRECTION_RIGHT);}
